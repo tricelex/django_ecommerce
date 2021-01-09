@@ -10,25 +10,25 @@ from commands import (
     azure_firewall_command,
     get_local_ip_firewall_command,
     create_db_command,
-    connect_details_command
+    connect_details_command,
 )
 
 
 def get_settings_command():
     verify_environment()
     SETTINGS_KEYS = (
-        'SECRET_KEY',
-        'POSTGRES_SERVER_NAME',
-        'POSTGRES_ADMIN_USER',
-        'POSTGRES_ADMIN_PASSWORD',
-        'POSTGRES_HOST',
-        'APP_DB_NAME',
-        'DJANGO_SETTINGS_MODULE',
-        'AZ_STORAGE_ACCOUNT_NAME',
-        'AZ_STORAGE_CONTAINER',
-        'AZ_STORAGE_KEY',
+        "SECRET_KEY",
+        "POSTGRES_SERVER_NAME",
+        "POSTGRES_ADMIN_USER",
+        "POSTGRES_ADMIN_PASSWORD",
+        "POSTGRES_HOST",
+        "APP_DB_NAME",
+        "DJANGO_SETTINGS_MODULE",
+        "AZ_STORAGE_ACCOUNT_NAME",
+        "AZ_STORAGE_CONTAINER",
+        "AZ_STORAGE_KEY",
     )
-    settings_pairs = ['{}={}'.format(k, os.getenv(k)) for k in SETTINGS_KEYS]
+    settings_pairs = ["{}={}".format(k, os.getenv(k)) for k in SETTINGS_KEYS]
     return settings_command + settings_pairs
 
 
@@ -37,40 +37,40 @@ def get_settings_command():
 @click.option("--deploying", default=False, help="Deploying to Azure.")
 def main(check_env, deploying):
     """CLI for working with data and deployment"""
-    if os.getenv("DJANGO_SETTINGS_MODULE") == 'market.azure':
+    if os.getenv("DJANGO_SETTINGS_MODULE") == "market.azure":
         security_check = input(
-            'You are currently accessing the Azure environment. Is this what you want to do? [y/n]: ')
-        if security_check == 'n':
+            "You are currently accessing the Azure environment. Is this what you want to do? [y/n]: "
+        )
+        if security_check == "n":
             print("Exiting")
             exit()
 
     # if check_env:
-        # subprocess.call("grep -v '^#' .env | xargs")
+    # subprocess.call("grep -v '^#' .env | xargs")
 
     migrate = input("Migrate the database? [y/n]: ")
-    if migrate == 'y':
-        process_migrate = subprocess.check_call(
-            ['python', 'manage.py', 'migrate'])
+    if migrate == "y":
+        process_migrate = subprocess.check_call(["python", "manage.py", "migrate"])
 
     prepopulate = input("Prepopulate the database? [y/n]: ")
     # TODO: this should be done by default in the migration step
-    if prepopulate == 'y':
+    if prepopulate == "y":
         process_makesuper = subprocess.check_call(
-            ['python', 'manage.py', 'prepopulate'])
+            ["python", "manage.py", "prepopulate"]
+        )
 
     makesuper = input("Create the admin user? [y/n]: ")
-    if makesuper == 'y':
-        process_makesuper = subprocess.check_call(
-            ['python', 'manage.py', 'makesuper'])
+    if makesuper == "y":
+        process_makesuper = subprocess.check_call(["python", "manage.py", "makesuper"])
 
     if deploying:
         REQUIRED_ENV_VARS = (
-            'AZ_GROUP',
-            'AZ_LOCATION',
-            'POSTGRES_SERVER_NAME',
-            'POSTGRES_ADMIN_USER',
-            'POSTGRES_ADMIN_PASSWORD',
-            'APP_DB_NAME',
+            "AZ_GROUP",
+            "AZ_LOCATION",
+            "POSTGRES_SERVER_NAME",
+            "POSTGRES_ADMIN_USER",
+            "POSTGRES_ADMIN_PASSWORD",
+            "APP_DB_NAME",
         )
 
         missing = []
@@ -83,21 +83,21 @@ def main(check_env, deploying):
             print("Exiting.")
             exit()
 
-        create_server = input('Create PostgreSQL server? [y/n]: ')
-        if create_server == 'y':
+        create_server = input("Create PostgreSQL server? [y/n]: ")
+        if create_server == "y":
             print("Creating PostgreSQL server...")
             subprocess.check_call(create_server_command)
 
-        create_rule = input('Create firewall rules? [y/n]: ')
+        create_rule = input("Create firewall rules? [y/n]: ")
         local_ip_firewall_command = get_local_ip_firewall_command()
-        if create_rule == 'y':
+        if create_rule == "y":
             print("Allowing access from Azure...")
             subprocess.check_call(azure_firewall_command)
             print("Allowing access from local IP...")
             subprocess.check_call(local_ip_firewall_command)
 
-        create_app_db = input('Create App DB? [y/n]: ')
-        if create_app_db == 'y':
+        create_app_db = input("Create App DB? [y/n]: ")
+        if create_app_db == "y":
             print("Creating App DB...")
             subprocess.check_call(create_db_command)
 
@@ -108,7 +108,7 @@ def main(check_env, deploying):
         # psql "host=$POSTGRES_HOST sslmode=require port=5432 user=$POSTGRES_ADMIN_USER@$POSTGRES_SERVER_NAME dbname=postgres" -W
 
     update_azure_env = input("Update the azure environment? [y/n]: ")
-    if update_azure_env == 'y':
+    if update_azure_env == "y":
         print("Updating App Settings... ")
         sys.stdout.flush()
         command = get_settings_command()
@@ -119,5 +119,5 @@ def main(check_env, deploying):
     sys.exit()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

@@ -9,13 +9,15 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('core', '0008_auto_20210109_1533'),
+        ("core", "0008_auto_20210109_1533"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='orderitem',
-            name='user',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='auth.user'),
+            model_name="orderitem",
+            name="user",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE, to="auth.user"
+            ),
         ),
     ]

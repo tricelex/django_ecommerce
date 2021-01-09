@@ -22,13 +22,13 @@ import sys
 
 
 REQUIRED_ENV_VARS = (
-    'AZ_GROUP',
-    'AZ_LOCATION',
-    'APP_SERVICE_APP_NAME',
-    'POSTGRES_SERVER_NAME',
-    'POSTGRES_ADMIN_USER',
-    'POSTGRES_ADMIN_PASSWORD',
-    'APP_DB_NAME',
+    "AZ_GROUP",
+    "AZ_LOCATION",
+    "APP_SERVICE_APP_NAME",
+    "POSTGRES_SERVER_NAME",
+    "POSTGRES_ADMIN_USER",
+    "POSTGRES_ADMIN_PASSWORD",
+    "APP_DB_NAME",
 )
 
 
@@ -44,5 +44,5 @@ def verify_environment():
         exit()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     verify_environment()

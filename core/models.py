@@ -2,17 +2,9 @@ from django.conf import settings
 from django.db import models
 from django.urls import reverse
 
-CATEGORY_CHOICES = (
-    ('S', 'Shirt'),
-    ('SW', 'Sport wear'),
-    ('OW', 'Outwear')
-)
+CATEGORY_CHOICES = (("S", "Shirt"), ("SW", "Sport wear"), ("OW", "Outwear"))
 
-LABEL_CHOICES = (
-    ('P', 'primary'),
-    ('S', 'secondary'),
-    ('D', 'danger')
-)
+LABEL_CHOICES = (("P", "primary"), ("S", "secondary"), ("D", "danger"))
 
 
 class Item(models.Model):
@@ -28,14 +20,10 @@ class Item(models.Model):
         return self.title
 
     def get_add_to_cart_url(self):
-        return reverse("core:add-to-cart", kwargs={
-            'slug': self.slug
-        })
+        return reverse("core:add-to-cart", kwargs={"slug": self.slug})
 
     def get_absolute_url(self):
-        return reverse("core:products", kwargs={
-            'slug': self.slug
-        })
+        return reverse("core:products", kwargs={"slug": self.slug})
 
 
 class OrderItem(models.Model):
@@ -45,7 +33,7 @@ class OrderItem(models.Model):
     quantity = models.IntegerField(default=1)
 
     def __str__(self):
-        return f'{self.quantity} of {self.item.title}'
+        return f"{self.quantity} of {self.item.title}"
 
 
 class Order(models.Model):
@@ -56,4 +44,4 @@ class Order(models.Model):
     ordered = models.BooleanField(default=False)
 
     def __str__(self):
-        return f'{self.user}'
+        return f"{self.user}"
