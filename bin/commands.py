@@ -1,7 +1,6 @@
 import os
 import urllib.request
 
-
 # App service settings
 
 # https://docs.microsoft.com/en-us/cli/azure/webapp/config/appsettings?view=azure-cli-latest#az-webapp-config-appsettings-set
@@ -112,6 +111,5 @@ connect_details_command = [
     "--name",
     os.getenv("POSTGRES_SERVER_NAME"),
 ]
-
 
 # TODO: add a Storage CLI command

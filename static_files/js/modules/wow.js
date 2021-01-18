@@ -2,7 +2,7 @@
 
 var WOW;
 
-(function ($) {
+(function($) {
 
   WOW = function WOW() {
 
@@ -19,13 +19,18 @@ var WOW;
           var windowHeight = window.innerHeight;
           var scroll = window.scrollY;
 
-          $('.wow').each(function () {
+          $('.wow').each(function() {
 
             if ($(this).css('visibility') == 'visible') {
               return;
             }
 
-            if (windowHeight + scroll - 100 > getOffset(this) && scroll < getOffset(this) || windowHeight + scroll - 100 > getOffset(this) + $(this).height() && scroll < getOffset(this) + $(this).height() || windowHeight + scroll == $(document).height() && getOffset(this) + 100 > $(document).height()) {
+            if (windowHeight + scroll - 100 > getOffset(this) && scroll <
+                getOffset(this) || windowHeight + scroll - 100 >
+                getOffset(this) + $(this).height() && scroll < getOffset(this) +
+                $(this).height() || windowHeight + scroll ==
+                $(document).height() && getOffset(this) + 100 >
+                $(document).height()) {
 
               var index = $(this).index('.wow');
 
@@ -33,8 +38,7 @@ var WOW;
 
               if (delay) {
 
-                delay = $(this).attr('data-wow-delay').slice(0, -1
-
+                delay = $(this).attr('data-wow-delay').slice(0, -1,
                 );
                 var self = this;
 
@@ -42,25 +46,28 @@ var WOW;
 
                 $(self).addClass('animated');
                 $(self).css({
-                  'visibility': 'visible'
+                  'visibility': 'visible',
                 });
                 $(self).css({
-                  'animation-delay': delay
+                  'animation-delay': delay,
                 });
                 $(self).css({
-                  'animation-name': animationName[index]
+                  'animation-name': animationName[index],
                 });
 
-                var removeTime = $(this).css('animation-duration').slice(0, -1) * 1000;
+                var removeTime = $(this).
+                    css('animation-duration').
+                    slice(0, -1) * 1000;
 
                 if ($(this).attr('data-wow-delay')) {
 
-                  removeTime += $(this).attr('data-wow-delay').slice(0, -1) * 1000;
+                  removeTime += $(this).attr('data-wow-delay').slice(0, -1) *
+                      1000;
                 }
 
                 var self = this;
 
-                setTimeout(function () {
+                setTimeout(function() {
 
                   $(self).removeClass('animated');
                 }, removeTime);
@@ -68,17 +75,19 @@ var WOW;
 
                 $(this).addClass('animated');
                 $(this).css({
-                  'visibility': 'visible'
+                  'visibility': 'visible',
                 });
                 $(this).css({
-                  'animation-name': animationName[index]
+                  'animation-name': animationName[index],
                 });
 
-                var removeTime = $(this).css('animation-duration').slice(0, -1) * 1000;
+                var removeTime = $(this).
+                    css('animation-duration').
+                    slice(0, -1) * 1000;
 
                 var self = this;
 
-                setTimeout(function () {
+                setTimeout(function() {
 
                   $(self).removeClass('animated');
                 }, removeTime);
@@ -89,7 +98,7 @@ var WOW;
 
         function appear() {
 
-          $('.wow').each(function () {
+          $('.wow').each(function() {
 
             var index = $(this).index('.wow');
 
@@ -103,22 +112,22 @@ var WOW;
 
               $(this).addClass('animated');
               $(this).css({
-                'visibility': 'visible'
+                'visibility': 'visible',
               });
               $(this).css({
-                'animation-delay': delay + 's'
+                'animation-delay': delay + 's',
               });
               $(this).css({
-                'animation-name': animationName[index]
+                'animation-name': animationName[index],
               });
             } else {
 
               $(this).addClass('animated');
               $(this).css({
-                'visibility': 'visible'
+                'visibility': 'visible',
               });
               $(this).css({
-                'animation-name': animationName[index]
+                'animation-name': animationName[index],
               });
             }
           });
@@ -129,29 +138,34 @@ var WOW;
           var windowHeight = window.innerHeight;
           var scroll = window.scrollY;
 
-          $('.wow.animated').each(function () {
+          $('.wow.animated').each(function() {
 
-            if (windowHeight + scroll - 100 > getOffset(this) && scroll > getOffset(this) + 100 || windowHeight + scroll - 100 < getOffset(this) && scroll < getOffset(this) + 100 || getOffset(this) + $(this).height > $(document).height() - 100) {
+            if (windowHeight + scroll - 100 > getOffset(this) && scroll >
+                getOffset(this) + 100 || windowHeight + scroll - 100 <
+                getOffset(this) && scroll < getOffset(this) + 100 ||
+                getOffset(this) + $(this).height > $(document).height() - 100) {
 
               $(this).removeClass('animated');
               $(this).css({
-                'animation-name': 'none'
+                'animation-name': 'none',
               });
               $(this).css({
-                'visibility': 'hidden'
+                'visibility': 'hidden',
               });
             } else {
 
-              var removeTime = $(this).css('animation-duration').slice(0, -1) * 1000;
+              var removeTime = $(this).css('animation-duration').slice(0, -1) *
+                  1000;
 
               if ($(this).attr('data-wow-delay')) {
 
-                removeTime += $(this).attr('data-wow-delay').slice(0, -1) * 1000;
+                removeTime += $(this).attr('data-wow-delay').slice(0, -1) *
+                    1000;
               }
 
               var self = this;
 
-              setTimeout(function () {
+              setTimeout(function() {
 
                 $(self).removeClass('animated');
               }, removeTime);
@@ -170,7 +184,8 @@ var WOW;
           var body = document.body;
           var docEl = document.documentElement;
 
-          var scrollTop = window.pageYOffset || docEl.scrollTop || body.scrollTop;
+          var scrollTop = window.pageYOffset || docEl.scrollTop ||
+              body.scrollTop;
 
           var clientTop = docEl.clientTop || body.clientTop || 0;
 
@@ -179,18 +194,18 @@ var WOW;
           return Math.round(top);
         }
 
-        $('.wow').each(function () {
+        $('.wow').each(function() {
 
           $(this).css({
-            'visibility': 'hidden'
+            'visibility': 'hidden',
           });
           animationName[$(this).index('.wow')] = $(this).css('animation-name');
           $(this).css({
-            'animation-name': 'none'
+            'animation-name': 'none',
           });
         });
 
-        $(window).scroll(function () {
+        $(window).scroll(function() {
 
           if (once) {
 
@@ -202,7 +217,7 @@ var WOW;
         });
 
         appear();
-      }
+      },
     };
   };
 })(jQuery);

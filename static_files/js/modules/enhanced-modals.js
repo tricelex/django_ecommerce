@@ -4,18 +4,18 @@
     office@mdbootstrap.com
 */
 
-(function($){
+(function($) {
   $('body').on('shown.bs.modal', '.modal', function() {
-    if(!$('.modal-backdrop').length) {
+    if (!$('.modal-backdrop').length) {
 
-      $modal_dialog = $(this).children('.modal-dialog')
+      $modal_dialog = $(this).children('.modal-dialog');
 
-      if($modal_dialog.hasClass('modal-side')) {
+      if ($modal_dialog.hasClass('modal-side')) {
         $(this).addClass('modal-scrolling');
         $('body').addClass('scrollable');
       }
 
-      if($modal_dialog.hasClass('modal-frame')) {
+      if ($modal_dialog.hasClass('modal-frame')) {
         $(this).addClass('modal-content-clickable');
         $('body').addClass('scrollable');
       }

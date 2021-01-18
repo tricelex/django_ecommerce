@@ -7,6 +7,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = "-05sgp9!deq=q1nltm@^^2cc+v29i(tyybv3v2t77qi66czazj"
 ALLOWED_HOSTS = []
 SITE_ID = 1
+LOGIN_REDIRECT_URL = "/"
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -20,6 +21,7 @@ INSTALLED_APPS = [
     "allauth.account",
     "allauth.socialaccount",
     "debug_toolbar",
+    "crispy_forms",
     "core",
 ]
 
@@ -93,3 +95,6 @@ if ENVIRONMENT == "production":
     SECURE_REDIRECT_EXEMPT = []
     SECURE_SSL_REDIRECT = True
     SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+
+# CRISPY FORMS
+CRISPY_TEMPLATE_PACK = "bootstrap4"
