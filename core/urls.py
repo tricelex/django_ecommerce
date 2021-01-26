@@ -1,20 +1,20 @@
 from django.urls import path
 
 from .views import (
-    checkout,
     HomeView,
     ItemDetailView,
     add_to_cart,
     remove_from_cart,
     remove_single_item_from_cart,
     OrderSummaryView,
+    CheckoutView,
 )
 
 app_name = "core"
 
 urlpatterns = [
     path("", HomeView.as_view(), name="home"),
-    path("checkout/", checkout, name="checkout"),
+    path("checkout/", CheckoutView.as_view(), name="checkout"),
     path("product/<slug>/", ItemDetailView.as_view(), name="products"),
     path("order-summary", OrderSummaryView.as_view(), name="order-summary"),
     path("add-to-cart/<slug>/", add_to_cart, name="add-to-cart"),

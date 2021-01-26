@@ -22,6 +22,7 @@ INSTALLED_APPS = [
     "allauth.socialaccount",
     "debug_toolbar",
     "crispy_forms",
+    "django_countries",
     "core",
 ]
 
