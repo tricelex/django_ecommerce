@@ -24,7 +24,8 @@
 
 
                         <!--Card content-->
-                        <form class="card-body">
+                        <form method="post" class="card-body">
+                            {% csrf_token %}
 
                             <!--address-->
                             <div class="md-form mb-5">
@@ -99,21 +100,13 @@
 
                             <div class="d-block my-3">
                                 {% for value, name in form.fields.payment_option.choices %}
-
-
-
                                     <div class="custom-control custom-radio">
-                                        <input id="{{ name }}" name="paymentMethod" type="radio"
+                                        <input id="{{ name }}" name="payment_option" value="{{ value }}" type="radio"
                                                class="custom-control-input" required>
                                         {#                                        {{ form.payment_option }}#}
                                         <label class="custom-control-label" for="{{ name }}">{{ name }}</label>
                                     </div>
                                 {% endfor %}
-                                {#                                <div class="custom-control custom-radio">#}
-                                {#                                    <input id="paypal" name="paymentMethod" type="radio"#}
-                                {#                                           class="custom-control-input" required>#}
-                                {#                                    <label class="custom-control-label" for="paypal">Paypal</label>#}
-                                {#                                </div>#}
                             </div>
                             <hr class="mb-4">
                             <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout
