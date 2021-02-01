@@ -17,7 +17,7 @@ class CheckoutForm(forms.Form):
         widget=CountrySelectWidget(attrs={"class": "custom-select d-block w-100"})
     )
     zip = forms.CharField(widget=forms.TextInput(attrs={"class": "form-control"}))
-    same_billing_address = forms.BooleanField()
+    same_shipping_address = forms.BooleanField()
     save_info = forms.BooleanField(required=False)
     payment_option = forms.ChoiceField(
         widget=forms.RadioSelect, choices=PAYMENT_CHOICES
